@@ -40,8 +40,8 @@
     <div data-role="content">
       <form>
         <div data-role="fieldcontain">
-          <label for="number">Número</label>
-          <input type="number" name="number" id="number" value="" />
+          <label for="name">Nome</label>
+          <input type="text" name="name" id="name" value="" />
         </div>
         <div data-role="fieldcontain">
           <label for="address">Endereço</label>
@@ -69,10 +69,6 @@
           </fieldset>
         </div>
         <div data-role="fieldcontain">
-          <label for="name">Nome</label>
-          <input type="text" name="name" id="name" value="" />
-        </div>
-        <div data-role="fieldcontain">
           <fieldset data-role="controlgroup" data-type="horizontal" class="sexo_radio" >
             <legend>Sexo</legend>
             <input type="radio" name="sexo" id="sexo_m" value="1" checked="checked"/>
@@ -90,17 +86,17 @@
          <select name="escolaridade" id="escolaridade">
           <option value="-1">Selecione</option>
           <optgroup label="Nomenclatura atual">
-            <option value="0">Analfabeto / Até a 3ª Série Fundamental</option>
-            <option value="1">4ª Série Fundamental</option>
-            <option value="2">Fundamental Completo</option>
-            <option value="3">Médio Completo</option>
+            <option value="0">Analfabeto/ Até 3a série Fundamental/ Até 3a série 1º Grau</option>
+            <option value="1">4ª Série Fundamental/ Até 4a série 1o. Grau</option>
+            <option value="2">Fundamental Completo/ 1º Grau completo</option>
+            <option value="3">Médio Completo/ 2º Grau completo</option>
             <option value="4">Superior Completo</option>
           </optgroup>
           <optgroup label="Nomenclatura antiga">
-            <option value="0">Analfabeto / Primário incompleto</option>
-            <option value="1">Primário Completo</option>
-            <option value="2">Ginasial Completo</option>
-            <option value="3">Colegial Completo</option>
+            <option value="0">Analfabeto/ Primário incompleto</option>
+            <option value="1">Primário Completo/ Ginasial incompleto</option>
+            <option value="2">Ginasial Completo/ Colegial incompleto</option>
+            <option value="3">Colegial Completo/ Superior incompleto</option>
             <option value="4">Superior Completo</option>
           </optgroup>
          </select>
@@ -119,15 +115,6 @@
             <option value="4">4 TVs ou +</option>
         </select>
 
-        <select name="dvd" id="dvd">
-            <option value="-1">Videocassete/DVD</option>
-            <option value="0">Não tem Videocassete/DVD</option>
-            <option value="1">1 Videocassete/DVD</option>
-            <option value="2">2 Videocassetes/DVDs</option>
-            <option value="3">3 Videocassetes/DVDs</option>
-            <option value="4">4 Videocassetes/DVDs ou +</option>
-        </select>
-
         <select name="radio" id="radio">
             <option value="-1">Rádios</option>
             <option value="0">Não tem Rádios</option>
@@ -140,55 +127,64 @@
         <select name="radio" id="radio">
             <option value="-1">Banheiros</option>
             <option value="0">Não tem Banheiro</option>
-            <option value="1">1 Banheiro</option>
-            <option value="2">2 Banheiros</option>
-            <option value="3">3 Banheiros</option>
-            <option value="4">4 Banheiros ou +</option>
+            <option value="4">1 Banheiro</option>
+            <option value="5">2 Banheiros</option>
+            <option value="6">3 Banheiros</option>
+            <option value="7">4 Banheiros ou +</option>
         </select>
 
         <select name="radio" id="radio">
             <option value="-1">Automóveis</option>
             <option value="0">Não tem Automóvel</option>
-            <option value="1">1 Automóvel</option>
-            <option value="2">2 Automóveis</option>
-            <option value="3">3 Automóveis</option>
-            <option value="4">4 Automóveis ou +</option>
+            <option value="4">1 Automóvel</option>
+            <option value="7">2 Automóveis</option>
+            <option value="9">3 Automóveis</option>
+            <option value="9">4 Automóveis ou +</option>
         </select>
 
         <select name="radio" id="radio">
             <option value="-1">Empregadas mensalistas</option>
             <option value="0">Não tem Empregada</option>
-            <option value="1">1 Empregada</option>
-            <option value="2">2 Empregadas</option>
-            <option value="3">3 Empregadas</option>
+            <option value="3">1 Empregada</option>
+            <option value="4">2 Empregadas</option>
+            <option value="4">3 Empregadas</option>
             <option value="4">4 Empregadas ou +</option>
         </select>
 
         <select name="radio" id="radio">
             <option value="-1">Máquinas de lavar</option>
             <option value="0">Não tem Máquina de lavar</option>
-            <option value="1">1 Máquina de lavar</option>
+            <option value="2">1 Máquina de lavar</option>
             <option value="2">2 Máquinas de lavar</option>
-            <option value="3">3 Máquinas de lavar</option>
-            <option value="4">4 Máquinas de lavar ou +</option>
+            <option value="2">3 Máquinas de lavar</option>
+            <option value="2">4 Máquinas de lavar ou +</option>
+        </select>
+
+        <select name="dvd" id="dvd">
+            <option value="-1">Videocassete/DVD</option>
+            <option value="0">Não tem Videocassete/DVD</option>
+            <option value="2">1 Videocassete/DVD</option>
+            <option value="2">2 Videocassetes/DVDs</option>
+            <option value="2">3 Videocassetes/DVDs</option>
+            <option value="2">4 Videocassetes/DVDs ou +</option>
         </select>
 
         <select name="radio" id="radio">
             <option value="-1">Geladeiras</option>
             <option value="0">Não tem Geladeira</option>
-            <option value="1">1 Geladeira</option>
-            <option value="2">2 Geladeiras</option>
-            <option value="3">3 Geladeiras</option>
+            <option value="4">1 Geladeira</option>
+            <option value="4">2 Geladeiras</option>
+            <option value="4">3 Geladeiras</option>
             <option value="4">4 Geladeiras ou +</option>
         </select>
 
         <select name="radio" id="radio">
             <option value="-1">Freezer</option>
             <option value="0">Não tem Freezer</option>
-            <option value="1">1 Freezer</option>
+            <option value="2">1 Freezer</option>
             <option value="2">2 Freezers</option>
-            <option value="3">3 Freezers</option>
-            <option value="4">4 Freezers ou +</option>
+            <option value="2">3 Freezers</option>
+            <option value="2">4 Freezers ou +</option>
         </select>
     </fieldset>
 
@@ -199,17 +195,17 @@
          <select name="instrucao_chefe" id="instrucao_chefe">
           <option value="-1">Selecione</option>
           <optgroup label="Nomenclatura atual">
-            <option value="0">Analfabeto / Até a 3ª Série Fundamental</option>
-            <option value="1">4ª Série Fundamental</option>
-            <option value="2">Fundamental Completo</option>
-            <option value="4">Médio Completo</option>
+            <option value="0">Analfabeto/ Até 3a série Fundamental/ Até 3a série 1º Grau</option>
+            <option value="1">4ª Série Fundamental/ Até 4a série 1o. Grau</option>
+            <option value="2">Fundamental Completo/ 1º Grau completo</option>
+            <option value="4">Médio Completo/ 2º Grau completo</option>
             <option value="8">Superior Completo</option>
           </optgroup>
           <optgroup label="Nomenclatura antiga">
-            <option value="0">Analfabeto / Primário incompleto</option>
-            <option value="1">Primário Completo</option>
-            <option value="2">Ginasial Completo</option>
-            <option value="4">Colegial Completo</option>
+            <option value="0">Analfabeto/ Primário incompleto</option>
+            <option value="1">Primário Completo/ Ginasial incompleto</option>
+            <option value="2">Ginasial Completo/ Colegial incompleto</option>
+            <option value="4">Colegial Completo/ Superior incompleto</option>
             <option value="8">Superior Completo</option>
           </optgroup>
          </select>
