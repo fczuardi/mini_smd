@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mini SMD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="./mobpick/external/modernizr.custom.min.js"></script>
+    <link rel="stylesheet" href="./css/jquery.mobile-1.2.0.min.css" />
+    <!-- <link rel="stylesheet" href="./themes/foo.min.css" /> -->
+    <link rel="stylesheet" href="./css/my.css" />
+    <script src="./js/jquery-1.8.2.min.js"></script>
+    <script src="./js/jquery.mobile-1.2.0.min.js"></script>
+
+  <script type="text/javascript">
+    // Load mobile datepicker if necessary
+    // from http://css-tricks.com/8678-progressively-enhancing-html5-forms/
+    yepnope({
+      test: Modernizr.inputtypes.date,
+      nope: [
+        "./mobpick/external/xdate.js",
+        "./mobpick/external/xdate.i18n.js",
+        "./mobpick/js/mobipick.js",
+        "./mobpick/css/mobipick.css",
+        "./js/custom-datepicker.js"
+      ]
+    });
+  </script>
+
+
+
+</head>
+<body>
+
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>Identificação</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">
+      <form>
+        <div data-role="fieldcontain">
+          <label for="number">Número</label>
+          <input type="number" name="number" id="number" value="" />
+        </div>
+        <div data-role="fieldcontain">
+          <label for="address">Endereço</label>
+          <textarea name="address" id="address"></textarea>
+        </div>
+        <div data-role="fieldcontain" class="multiple-phones">
+          <label for="phone_1">Telefones</label>
+          <input type="tel" name="phone_1" id="phone_1" value="" />
+          <input type="tel" name="phone_2" id="phone_2" value="" />
+          <input type="tel" name="phone_3" id="phone_3" value="" class="last"/>
+        </div>
+        <div data-role="fieldcontain">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" value="" />
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal" class="area_radio">
+            <legend>Área</legend>
+            <input type="radio" name="area" id="area_1" value="1" checked="checked" />
+            <label for="area_1">1</label>
+            <input type="radio" name="area" id="area_2" value="2"  />
+            <label for="area_2">2</label>
+            <input type="radio" name="area" id="area_3" value="3"  />
+            <label for="area_3">3</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <label for="name">Nome</label>
+          <input type="text" name="name" id="name" value="" />
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal" class="sexo_radio" >
+            <legend>Sexo</legend>
+            <input type="radio" name="sexo" id="sexo_m" value="1" checked="checked"/>
+            <label for="sexo_m">masculino</label>
+            <input type="radio" name="sexo" id="sexo_f" value="2"  />
+            <label for="sexo_f">feminino</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <label for="birth">Data de nascimento</label>
+          <input type="date" name="birth" id="birth" value="" />
+        </div>
+        <div data-role="fieldcontain">
+         <label for="escolaridade" class="select">Escolaridade</label>
+         <select name="escolaridade" id="escolaridade">
+          <option value="-1">Selecione</option>
+          <optgroup label="Nomenclatura atual">
+            <option value="0">Analfabeto / Até a 3ª Série Fundamental</option>
+            <option value="1">4ª Série Fundamental</option>
+            <option value="2">Fundamental Completo</option>
+            <option value="3">Médio Completo</option>
+            <option value="4">Superior Completo</option>
+          </optgroup>
+          <optgroup label="Nomenclatura antiga">
+            <option value="0">Analfabeto / Primário incompleto</option>
+            <option value="1">Primário Completo</option>
+            <option value="2">Ginasial Completo</option>
+            <option value="3">Colegial Completo</option>
+            <option value="4">Superior Completo</option>
+          </optgroup>
+         </select>
+        </div>
+        <div data-role="fieldcontain">
+
+<fieldset data-role="controlgroup" class="socioeconomico">
+        <legend>Nível Socioeconômico</legend>
+        <label for="tv">Televisores em cores</label>
+        <select name="tv" id="tv">
+            <option value="-1">Televisores em cores</option>
+            <option value="0">Não tem TV</option>
+            <option value="1">1 TV</option>
+            <option value="2">2 TVs</option>
+            <option value="3">3 TVs</option>
+            <option value="4">4 TVs ou +</option>
+        </select>
+
+        <select name="dvd" id="dvd">
+            <option value="-1">Videocassete/DVD</option>
+            <option value="0">Não tem Videocassete/DVD</option>
+            <option value="1">1 Videocassete/DVD</option>
+            <option value="2">2 Videocassetes/DVDs</option>
+            <option value="3">3 Videocassetes/DVDs</option>
+            <option value="4">4 Videocassetes/DVDs ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Rádios</option>
+            <option value="0">Não tem Rádios</option>
+            <option value="1">1 Rádio</option>
+            <option value="2">2 Rádios</option>
+            <option value="3">3 Rádios</option>
+            <option value="4">4 Rádios ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Banheiros</option>
+            <option value="0">Não tem Banheiro</option>
+            <option value="1">1 Banheiro</option>
+            <option value="2">2 Banheiros</option>
+            <option value="3">3 Banheiros</option>
+            <option value="4">4 Banheiros ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Automóveis</option>
+            <option value="0">Não tem Automóvel</option>
+            <option value="1">1 Automóvel</option>
+            <option value="2">2 Automóveis</option>
+            <option value="3">3 Automóveis</option>
+            <option value="4">4 Automóveis ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Empregadas mensalistas</option>
+            <option value="0">Não tem Empregada</option>
+            <option value="1">1 Empregada</option>
+            <option value="2">2 Empregadas</option>
+            <option value="3">3 Empregadas</option>
+            <option value="4">4 Empregadas ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Máquinas de lavar</option>
+            <option value="0">Não tem Máquina de lavar</option>
+            <option value="1">1 Máquina de lavar</option>
+            <option value="2">2 Máquinas de lavar</option>
+            <option value="3">3 Máquinas de lavar</option>
+            <option value="4">4 Máquinas de lavar ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Geladeiras</option>
+            <option value="0">Não tem Geladeira</option>
+            <option value="1">1 Geladeira</option>
+            <option value="2">2 Geladeiras</option>
+            <option value="3">3 Geladeiras</option>
+            <option value="4">4 Geladeiras ou +</option>
+        </select>
+
+        <select name="radio" id="radio">
+            <option value="-1">Freezer</option>
+            <option value="0">Não tem Freezer</option>
+            <option value="1">1 Freezer</option>
+            <option value="2">2 Freezers</option>
+            <option value="3">3 Freezers</option>
+            <option value="4">4 Freezers ou +</option>
+        </select>
+    </fieldset>
+
+
+        </div>
+        <div data-role="fieldcontain">
+         <label for="instrucao_chefe" class="select">Grau de instrução do chefe de família</label>
+         <select name="instrucao_chefe" id="instrucao_chefe">
+          <option value="-1">Selecione</option>
+          <optgroup label="Nomenclatura atual">
+            <option value="0">Analfabeto / Até a 3ª Série Fundamental</option>
+            <option value="1">4ª Série Fundamental</option>
+            <option value="2">Fundamental Completo</option>
+            <option value="4">Médio Completo</option>
+            <option value="8">Superior Completo</option>
+          </optgroup>
+          <optgroup label="Nomenclatura antiga">
+            <option value="0">Analfabeto / Primário incompleto</option>
+            <option value="1">Primário Completo</option>
+            <option value="2">Ginasial Completo</option>
+            <option value="4">Colegial Completo</option>
+            <option value="8">Superior Completo</option>
+          </optgroup>
+         </select>
+        </div>
+      </form>
+      <a data-role="button" data-theme="b" data-transition="slide" href="2_coop-wonca.html">Próxima</a>
+    </div><!-- /content -->
+
+
+</body>
+</html>
