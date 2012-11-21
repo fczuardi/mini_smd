@@ -26,19 +26,25 @@
         <h3>Durante as últimas duas semanas…</h3>
           <fieldset data-role="controlgroup">
               <legend>Quanto você tem ficado incomodado(a) com problemas emocionais como se sentir ansioso(a), deprimido(a), irritado(a) ou abatido(a) e triste?</legend>
-              <input type="radio" name="coop" id="choice_1" value="1" checked="checked" />
+              <input type="radio" name="a" id="choice_1" value="1" checked="checked" />
               <label for="choice_1">Nem um pouco</label>
-              <input type="radio" name="coop" id="choice_2" value="2"  />
+              <input type="radio" name="a" id="choice_2" value="2"  />
               <label for="choice_2">Um pouco</label>
-              <input type="radio" name="coop" id="choice_3" value="3"  />
+              <input type="radio" name="a" id="choice_3" value="3"  />
               <label for="choice_3">Moderadamente</label>
-              <input type="radio" name="coop" id="choice_4" value="4"  />
+              <input type="radio" name="a" id="choice_4" value="4"  />
               <label for="choice_4">Bastante</label>
-              <input type="radio" name="coop" id="choice_5" value="5"  />
+              <input type="radio" name="a" id="choice_5" value="5"  />
               <label for="choice_5">Extremamente</label>
           </fieldset>
         <a data-role="button" data-theme="b" data-transition="slide" href="3_phq-2.html">Próxima</a>
       </form>
     </div><!-- /content -->
+<script src="./js/main.js"></script>
+<script>
+$(function() {
+  form_page_init('coopWonca');
+});
+</script>
 </body>
 </html>

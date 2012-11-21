@@ -26,29 +26,35 @@
         <h3>Ao longo das últimas 2 (duas) semanas, com que frequência você foi incomodado por algum dos seguintes problemas?</h3>
         <fieldset data-role="controlgroup" >
             <h4>1. Sentindo-se nervoso, ansioso ou no meu limite</h4>
-            <input type="radio" name="area" id="area_0" value="0" checked="checked" />
+            <input type="radio" name="a" value="0" checked="checked" />
             <label for="area_0">Nenhuma Vez</label>
-            <input type="radio" name="area" id="area_1" value="1"/>
+            <input type="radio" name="a" value="1"/>
             <label for="area_1">Vários Dias</label>
-            <input type="radio" name="area" id="area_2" value="2" />
+            <input type="radio" name="a" value="2" />
             <label for="area_2">Mais da Metade dos Dias</label>
-            <input type="radio" name="area" id="area_3" value="3" />
+            <input type="radio" name="a" value="3" />
             <label for="area_3">Quase todos os dias</label>
           </fieldset>
           <fieldset data-role="controlgroup" >
             <h4>2. Não ser capaz de interromper ou de controlar as preocupações</h4>
-            <input type="radio" name="area" id="area_0" value="0" checked="checked" />
+            <input type="radio" name="b" value="0" checked="checked" />
             <label for="area_0">Nenhuma Vez</label>
-            <input type="radio" name="area" id="area_1" value="1"/>
+            <input type="radio" name="b" value="1"/>
             <label for="area_1">Vários Dias</label>
-            <input type="radio" name="area" id="area_2" value="2" />
+            <input type="radio" name="b" value="2" />
             <label for="area_2">Mais da Metade dos Dias</label>
-            <input type="radio" name="area" id="area_3" value="3" />
+            <input type="radio" name="b" value="3" />
             <label for="area_3">Quase todos os dias</label>
           </fieldset>
         <a data-role="button" data-theme="b" data-transition="slide" href="5_idate-3.html">Próxima</a>
       </form>
     </div><!-- /content -->
+<script src="./js/main.js"></script>
+<script>
+$(function() {
+  form_page_init('gad2');
+});
+</script>
 
 </body>
 </html>

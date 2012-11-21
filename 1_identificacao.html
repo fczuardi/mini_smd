@@ -6,28 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./mobpick/external/modernizr.custom.min.js"></script>
     <link rel="stylesheet" href="./css/jquery.mobile-1.2.0.min.css" />
-    <!-- <link rel="stylesheet" href="./themes/foo.min.css" /> -->
     <link rel="stylesheet" href="./css/my.css" />
+    <script type="text/javascript">if (!window.console){console = {log: function() {}};}</script>
     <script src="./js/jquery-1.8.2.min.js"></script>
     <script src="./js/jquery.mobile-1.2.0.min.js"></script>
-
-  <script type="text/javascript">
-    // Load mobile datepicker if necessary
-    // from http://css-tricks.com/8678-progressively-enhancing-html5-forms/
-    yepnope({
-      test: Modernizr.inputtypes.date,
-      nope: [
-        "./mobpick/external/xdate.js",
-        "./mobpick/external/xdate.i18n.js",
-        "./mobpick/js/mobipick.js",
-        "./mobpick/css/mobipick.css",
-        "./js/custom-datepicker.js"
-      ]
-    });
-  </script>
-
-
-
+    <script type="./js/load_polyfills.js"></script>
 </head>
 <body>
 
@@ -72,9 +55,9 @@
         <div data-role="fieldcontain">
           <fieldset data-role="controlgroup" data-type="horizontal" class="sexo_radio" >
             <legend>Sexo</legend>
-            <input type="radio" name="sexo" id="sexo_m" value="1" checked="checked"/>
+            <input type="radio" name="gender" id="sexo_m" value="masculino" checked="checked"/>
             <label for="sexo_m">masculino</label>
-            <input type="radio" name="sexo" id="sexo_f" value="2"  />
+            <input type="radio" name="gender" id="sexo_f" value="feminino"  />
             <label for="sexo_f">feminino</label>
           </fieldset>
         </div>
@@ -125,7 +108,7 @@
             <option value="4">4 Rádios ou +</option>
         </select>
 
-        <select name="radio" id="radio">
+        <select name="bathroom" id="bathroom">
             <option value="-1">Banheiros</option>
             <option value="0">Não tem Banheiro</option>
             <option value="4">1 Banheiro</option>
@@ -134,7 +117,7 @@
             <option value="7">4 Banheiros ou +</option>
         </select>
 
-        <select name="radio" id="radio">
+        <select name="cars" id="cars">
             <option value="-1">Automóveis</option>
             <option value="0">Não tem Automóvel</option>
             <option value="4">1 Automóvel</option>
@@ -143,7 +126,7 @@
             <option value="9">4 Automóveis ou +</option>
         </select>
 
-        <select name="radio" id="radio">
+        <select name="maid" id="maid">
             <option value="-1">Empregadas mensalistas</option>
             <option value="0">Não tem Empregada</option>
             <option value="3">1 Empregada</option>
@@ -152,7 +135,7 @@
             <option value="4">4 Empregadas ou +</option>
         </select>
 
-        <select name="radio" id="radio">
+        <select name="washingMachine" id="washingMachine">
             <option value="-1">Máquinas de lavar</option>
             <option value="0">Não tem Máquina de lavar</option>
             <option value="2">1 Máquina de lavar</option>
@@ -161,7 +144,7 @@
             <option value="2">4 Máquinas de lavar ou +</option>
         </select>
 
-        <select name="dvd" id="dvd">
+        <select name="dvdPlayer" id="dvdPlayer">
             <option value="-1">Videocassete/DVD</option>
             <option value="0">Não tem Videocassete/DVD</option>
             <option value="2">1 Videocassete/DVD</option>
@@ -170,7 +153,7 @@
             <option value="2">4 Videocassetes/DVDs ou +</option>
         </select>
 
-        <select name="radio" id="radio">
+        <select name="fridge" id="fridge">
             <option value="-1">Geladeiras</option>
             <option value="0">Não tem Geladeira</option>
             <option value="4">1 Geladeira</option>
@@ -179,7 +162,7 @@
             <option value="4">4 Geladeiras ou +</option>
         </select>
 
-        <select name="radio" id="radio">
+        <select name="freezer" id="freezer">
             <option value="-1">Freezer</option>
             <option value="0">Não tem Freezer</option>
             <option value="2">1 Freezer</option>
@@ -214,6 +197,12 @@
       </form>
       <a data-role="button" data-theme="b" data-transition="slide" href="2_coop-wonca.html">Próxima</a>
     </div><!-- /content -->
+<script src="./js/main.js"></script>
+<script>
+$(function() {
+  form_page_init('about');
+});
+</script>
 
 
 </body>

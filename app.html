@@ -7,35 +7,24 @@
     <script type="text/javascript" src="./mobpick/external/modernizr.custom.min.js"></script>
     <link rel="stylesheet" href="./css/jquery.mobile-1.2.0.min.css" />
     <link rel="stylesheet" href="./css/my.css" />
+    <script type="text/javascript">if (!window.console){console = {log: function() {}};}</script>
     <script src="./js/jquery-1.8.2.min.js"></script>
     <script src="./js/jquery.mobile-1.2.0.min.js"></script>
-
-  <script type="text/javascript">
-    // Load mobile datepicker if necessary
-    // from http://css-tricks.com/8678-progressively-enhancing-html5-forms/
-    yepnope({
-      test: Modernizr.inputtypes.date,
-      nope: [
-        "./mobpick/external/xdate.js",
-        "./mobpick/external/xdate.i18n.js",
-        "./mobpick/js/mobipick.js",
-        "./mobpick/css/mobipick.css",
-        "./js/custom-datepicker.js"
-      ]
-    });
-  </script>
-
-
-
+    <script type="./js/load_polyfills.js"></script>
 </head>
 <body>
 
 <div data-role="page">
   <img src="./img/capaMiniSMD.png" />
-  <a data-role="button" data-theme="b" data-transition="fade" href="1_identificacao.html">Novo Sujeito</a>
-  <a data-role="button" data-theme="b" data-transition="fade" href="list.html">Sujeito Existente</a>
-  <a data-role="button" data-theme="b" data-transition="slide" href="sync.html">Sincronizar</a>
+  <a id="subject_new_btn" data-role="button" data-theme="b" data-transition="fade" href="1_identificacao.html">Novo Sujeito</a>
+  <a id="subject_list_btn" data-role="button" data-theme="b" data-transition="fade" href="list.html">Sujeito Existente</a>
+  <a id="sync_btn" data-role="button" data-theme="b" data-transition="slide" href="sync.html">Sincronizar</a>
 </div><!-- /page -->
-
+<script src="./js/main.js"></script>
+<script>
+$(function() {
+  home_init();
+});
+</script>
 </body>
 </html>

@@ -27,31 +27,37 @@
         <!-- <div data-role="fieldcontain"> -->
             <fieldset data-role="controlgroup" >
                 <h4>1. Pouco interesse ou prazer em fazer as coisas</h4>
-                <input type="radio" name="area" id="area_0" value="0" checked="checked" />
+                <input type="radio" name="a" id="i_0" value="0" checked="checked" />
                 <label for="area_0">Nenhuma Vez</label>
-                <input type="radio" name="area" id="area_1" value="1"/>
+                <input type="radio" name="a" id="i_1" value="1"/>
                 <label for="area_1">Vários Dias</label>
-                <input type="radio" name="area" id="area_2" value="2"  />
+                <input type="radio" name="a" id="i_2" value="2"  />
                 <label for="area_2">Mais da Metade dos Dias</label>
-                <input type="radio" name="area" id="area_3" value="3"  />
+                <input type="radio" name="a" id="i_3" value="3"  />
                 <label for="area_3">Quase todos os dias</label>
               </fieldset>
             <!-- </div> -->
         <!-- <div data-role="fieldcontain"> -->
             <fieldset data-role="controlgroup" >
                 <h4>2. Sentindo-se triste, deprimido ou sem esperança</h4>
-                <input type="radio" name="area" id="area_0" value="0" checked="checked" />
+                <input type="radio" name="b" id="t_0" value="0" checked="checked" />
                 <label for="area_0">Nenhuma Vez</label>
-                <input type="radio" name="area" id="area_1" value="1"/>
+                <input type="radio" name="b" id="t_1" value="1"/>
                 <label for="area_1">Vários Dias</label>
-                <input type="radio" name="area" id="area_2" value="2"  />
+                <input type="radio" name="b" id="t_2" value="2"  />
                 <label for="area_2">Mais da Metade dos Dias</label>
-                <input type="radio" name="area" id="area_3" value="3"  />
+                <input type="radio" name="b" id="t_3" value="3"  />
                 <label for="area_3">Quase todos os dias</label>
             </fieldset>
         <!-- </div> -->
         <a data-role="button" data-theme="b" data-transition="slide" href="4_gad-2.html">Próxima</a>
       </form>
     </div><!-- /content -->
+<script src="./js/main.js"></script>
+<script>
+$(function() {
+  form_page_init('phq2');
+});
+</script>
 </body>
 </html>
