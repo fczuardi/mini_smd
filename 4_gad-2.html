@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div data-role="page">
+<div data-role="page" data-pagename="gad2">
 
     <div data-role="header">
         <a data-rel="back" href="3_phq-2.html">Anterior</a>
@@ -26,25 +26,25 @@
         <h3>Ao longo das últimas 2 (duas) semanas, com que frequência você foi incomodado por algum dos seguintes problemas?</h3>
         <fieldset data-role="controlgroup" >
             <h4>1. Sentindo-se nervoso, ansioso ou no meu limite</h4>
-            <input type="radio" name="a" value="0" checked="checked" />
-            <label for="area_0">Nenhuma Vez</label>
-            <input type="radio" name="a" value="1"/>
-            <label for="area_1">Vários Dias</label>
-            <input type="radio" name="a" value="2" />
-            <label for="area_2">Mais da Metade dos Dias</label>
-            <input type="radio" name="a" value="3" />
-            <label for="area_3">Quase todos os dias</label>
+            <input type="radio" name="d" id="n_0" value="0" checked="checked" />
+            <label for="n_0">Nenhuma Vez</label>
+            <input type="radio" name="d" id="n_1" value="1"/>
+            <label for="n_1">Vários Dias</label>
+            <input type="radio" name="d" id="n_2" value="2" />
+            <label for="n_2">Mais da Metade dos Dias</label>
+            <input type="radio" name="d" id="n_3" value="3" />
+            <label for="n_3">Quase todos os dias</label>
           </fieldset>
           <fieldset data-role="controlgroup" >
             <h4>2. Não ser capaz de interromper ou de controlar as preocupações</h4>
-            <input type="radio" name="b" value="0" checked="checked" />
-            <label for="area_0">Nenhuma Vez</label>
-            <input type="radio" name="b" value="1"/>
-            <label for="area_1">Vários Dias</label>
-            <input type="radio" name="b" value="2" />
-            <label for="area_2">Mais da Metade dos Dias</label>
-            <input type="radio" name="b" value="3" />
-            <label for="area_3">Quase todos os dias</label>
+            <input type="radio" name="e" id="p_0" value="0" checked="checked" />
+            <label for="p_0">Nenhuma Vez</label>
+            <input type="radio" name="e" id="p_1" value="1"/>
+            <label for="p_1">Vários Dias</label>
+            <input type="radio" name="e" id="p_2" value="2" />
+            <label for="p_2">Mais da Metade dos Dias</label>
+            <input type="radio" name="e" id="p_3" value="3" />
+            <label for="p_3">Quase todos os dias</label>
           </fieldset>
         <a data-role="button" data-theme="b" data-transition="slide" href="5_idate-3.html">Próxima</a>
       </form>
@@ -52,7 +52,8 @@
 <script src="./js/main.js"></script>
 <script>
 $(function() {
-  form_page_init('gad2');
+  $(window).unbind('pageshow');
+  $(window).bind('pageshow', form_page_init);
 });
 </script>
 

@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div data-role="page">
+<div data-role="page" data-pagename="coopWonca">
 
     <div data-role="header">
       <a data-rel="back" href="1_identificacao.html">Anterior</a>
@@ -43,7 +43,8 @@
 <script src="./js/main.js"></script>
 <script>
 $(function() {
-  form_page_init('coopWonca');
+  $(window).unbind('pageshow');
+  $(window).bind('pageshow', form_page_init);
 });
 </script>
 </body>

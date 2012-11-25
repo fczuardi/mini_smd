@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div data-role="page">
+<div data-role="page" data-pagename="about">
 
     <div data-role="header">
         <a data-rel="back" href="app.html" data-transition="fade">Anterior</a>
@@ -70,18 +70,16 @@
          <select name="escolaridade" id="escolaridade">
           <option value="-1">Selecione</option>
           <optgroup label="Nomenclatura atual">
-            <option value="0">Analfabeto/ Até 3a série Fundamental/ Até 3a série 1º Grau</option>
-            <option value="1">4ª Série Fundamental/ Até 4a série 1o. Grau</option>
-            <option value="2">Fundamental Completo/ 1º Grau completo</option>
-            <option value="3">Médio Completo/ 2º Grau completo</option>
-            <option value="4">Superior Completo</option>
+            <option value="0">Analfabeto/ Até 4a série Fundamental/ Até 4a série 1º Grau</option>
+            <option value="1">Fundamental Completo/ 1º Grau completo</option>
+            <option value="2">Médio Completo/ 2º Grau completo</option>
+            <option value="3">Superior Completo</option>
           </optgroup>
           <optgroup label="Nomenclatura antiga">
-            <option value="0">Analfabeto/ Primário incompleto</option>
-            <option value="1">Primário Completo/ Ginasial incompleto</option>
-            <option value="2">Ginasial Completo/ Colegial incompleto</option>
-            <option value="3">Colegial Completo/ Superior incompleto</option>
-            <option value="4">Superior Completo</option>
+            <option value="0">Analfabeto/ Primário completo</option>
+            <option value="1">Ginasial Completo/ Colegial incompleto</option>
+            <option value="2">Colegial Completo/ Superior incompleto</option>
+            <option value="3">Superior Completo</option>
           </optgroup>
          </select>
         </div>
@@ -200,7 +198,8 @@
 <script src="./js/main.js"></script>
 <script>
 $(function() {
-  form_page_init('about');
+  $(window).unbind('pageshow');
+  $(window).bind('pageshow', form_page_init);
 });
 </script>
 
