@@ -105,6 +105,49 @@ Answers = function(){
       }
   }
   this.phq2 = {
+    a: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      },
+    b: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      }
+  }
+  this.gad2 = {
+    a: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      },
+    b: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      }
+  }
+  this.idate3 = {
+    a: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      }
+  }
+  this.cudit3 = {
+    a: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      }
+  }
+  this.m3 = {
+    a: {
+      type:'radio',
+      value:'0',
+      selectedIndex:0
+      },
     b: {
       type:'radio',
       value:'0',
@@ -114,68 +157,25 @@ Answers = function(){
       type:'radio',
       value:'0',
       selectedIndex:0
-      }
-  }
-  this.gad2 = {
+      },
     d: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      },
-    e: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      }
-  }
-  this.idate3 = {
-    f: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      }
-  }
-  this.cudit3 = {
-    g: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      }
-  }
-  this.m3 = {
-    h: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      },
-    i: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      },
-    j: {
-      type:'radio',
-      value:'0',
-      selectedIndex:0
-      },
-    k: {
       type:'radio',
       value:'0',
       selectedIndex:0
       }
   }
   this.apss3 = {
-    l: {
+    a: {
       type:'radio',
       value:'0',
       selectedIndex:0
       },
-    m: {
+    b: {
       type:'radio',
       value:'0',
       selectedIndex:0
       },
-    n: {
+    c: {
       type:'radio',
       value:'0',
       selectedIndex:0
