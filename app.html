@@ -15,19 +15,38 @@
 <body>
 
 <div data-role="page">
+    <div data-role="content">
+
   <img src="./img/capaMiniSMD.png" />
-  <a id="subject_new_btn" data-role="button" data-theme="b" data-transition="fade" href="1_identificacao.html">Novo Sujeito</a>
+  <a id="subject_new_btn" data-role="button" data-theme="c" data-transition="fade" href="1_identificacao.html">Novo Sujeito</a>
 
 
-  <a class="ui-disabled" id="subject_list_btn" data-role="button" data-theme="b" data-transition="fade" href="list.html">Sujeito Existente</a>
-  <a class="ui-disabled" id="sync_btn" data-role="button" data-theme="b" data-transition="slide" href="sync.html">Sincronizar</a>
+  <a class="" id="subject_list_btn" data-role="button" data-theme="c" href="list.html">Sujeito Existente</a>
+  <a class="" id="sync_btn" data-role="button" data-rel="popup"
+      data-position-to="window" href="#popupSend">Enviar</a>
 
+<div data-role="popup" id="popupSend"  data-theme="a" data-overlay-theme="b">
+  <h3>Entrevistador</h3>
+  <input type="text" placeholder="Nome" name="interviewer" id="interviewerName" data-theme="a" />
+  <button data-theme="b" id="sendButton">Enviar</button>
+  <input type="button" value="Cancelar" onclick="$('#popupSend').popup('close');"/>
+</div>
+
+<div data-role="popup" id="popupSent"  data-theme="a" data-overlay-theme="b">
+  <p id="responseMsg">foo bar</p>
+  <input id="close-btn" type="button" value="OK" onclick="$('#popupSent').popup('close');"/>
+</div>
+
+</div>
 </div><!-- /page -->
 <script src="./js/main.js"></script>
 <script>
 $(function() {
+  $(window).unbind('pageshow');
+  $(window).bind('pageshow', form_page_init);
   home_init();
 });
+
 </script>
 </body>
 </html>

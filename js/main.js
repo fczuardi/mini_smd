@@ -182,6 +182,34 @@ Answers = function(){
       }
   }
 }
+function dataToSend(){
+  var subjectList = JSON.parse(localStorage.getItem('subjectList')),
+      subject,
+      summarizedSubject,
+      toSend = [];
+  for(var i=0; i< subjectList.length; i++){
+    subject = JSON.parse(localStorage.getItem(subjectList[i]));
+    if (!subject){continue;}
+    if(!subject.about.name.value){ continue;}
+    summarizedSubject = {
+      id: subject.id
+    };
+    for (var j in subject){
+      for (var k in subject[j]){
+        for (var l in subject[j][k]){
+          if (l == 'value'){
+            summarizedSubject[j+'_'+k] = subject[j][k][l];
+          }
+        }
+      }
+    }
+    toSend.push(summarizedSubject);
+  }
+  // console.log(JSON.stringify(toSend));
+  // return JSON.stringify(toSend);
+  return toSend;
+}
+
 //for debugging purposes
 function clearStorage(){
   for (var i in localStorage){
@@ -191,24 +219,107 @@ function clearStorage(){
 function newSubject(event){
   // event.preventDefault();
   // event.stopPropagation();
+  var subjectList = localStorage.getItem('subjectList');
+  if (subjectList == null){
+    subjectList = [];
+  } else {
+    subjectList = JSON.parse(subjectList);
+  }
   subject = new Answers();
   localStorage.setItem('currentSubjectID', subject.id);
   localStorage.setItem(subject.id, JSON.stringify(subject));
+  subjectList.push(subject.id);
+  localStorage.setItem('subjectList', JSON.stringify(subjectList));
   // $('#subject_list_btn').removeClass('ui-disabled');
   console.log("current subject: "+ subject.id);
 }
-function listSubjects(event){
+function listSubjects(){
+  // event.preventDefault();
+  // event.stopPropagation();
+  var subjectList = JSON.parse(localStorage.getItem('subjectList')),
+      subjectID,
+      subjectName,
+      subject,
+      itemHTML,
+      newSubjectList = [];
+  console.log(subjectList);
+  console.log('---------------');
+  $('#subjectList').html('');
+  for(var i=0; i< subjectList.length; i++){
+    subjectID = subjectList[i];
+    subject = JSON.parse(localStorage.getItem(subjectID));
+    if (!subject){continue;}
+    //remove sujeitos sem nome
+    if(!subject.about.name.value){
+      localStorage.removeItem(subjectID);
+      continue;
+    }
+    newSubjectList.push(subjectID);
+    subjectName = subject.about.name.value;
+    console.log(subjectID);
+    console.log(subject.about.name.value);
+    itemHTML = '<li><a href="./1_identificacao.html?subject='+subjectID+'">'+
+               subjectName +
+               '</a></li>';
+    $('#subjectList').append(itemHTML);
+  }
+  localStorage.setItem('subjectList', JSON.stringify(newSubjectList));
+  $('#subjectList').listview('refresh');
+}
+function offlineStateChanged(event){
+  console.log('offlineStateChanged');
+  console.log(navigator.onLine)
+  if (navigator.onLine){
+    $('#sync_btn').removeClass('ui-disabled');
+  } else{
+    $('#sync_btn').addClass('ui-disabled');
+  }
+}
+function sendData(event){
+  console.log('sendData');
+  var url = "./sync.php";
   event.preventDefault();
   event.stopPropagation();
-  alert(localStorage.length);
-  console.log(JSON.stringify(localStorage));
+  $('#sendButton').addClass('ui-disabled');
+  $('#sendButton').html('Enviando…');
+  $('#sendButton').button('refresh');
+  $.post( url,
+          {
+            sent_by: $("#interviewerName").attr('value'),
+            data: dataToSend()
+          },
+          function(data){
+            // console.log(data.received);
+            $('#sendButton').removeClass('ui-disabled');
+            $('#sendButton').html('Enviar');
+            $('#sendButton').button('refresh');
+            $("#responseMsg").html(data.msg);
+            $("#popupSend").bind({
+               popupafterclose: function(event, ui) {
+                setTimeout(function(){
+                  $("#popupSent").popup( "open" );
+                  if (data.success == 1){
+                    //remove local data here
+                  }
+                },300);
+               }
+            });
+            $("#popupSend").popup( "close" );
+          },
+          "json");
+
 }
 function home_init(){
   $('#subject_new_btn').click(newSubject);
-  $('#subject_list_btn').click(listSubjects);
+  // $('#subject_list_btn').click(listSubjects);
   if (localStorage.length == 0){
     $('#subject_list_btn').addClass('ui-disabled');
   }
+  if ((localStorage.length == 0) || (!navigator.onLine)){
+    $('#sync_btn').addClass('ui-disabled');
+  }
+  $(window).bind("online offline", offlineStateChanged);
+  $('#sendButton').bind("click", sendData);
 }
 function fillFormValues(){
   console.log('fillFormValues');
@@ -257,8 +368,15 @@ function fillFormValues(){
   }
 }
 function loadCurrentSubject(){
-  var currentSubjectID = localStorage.getItem('currentSubjectID');
+  var urlSubject = getURLParameter('subject');
+  console.log('AAAA')
+  console.log(urlSubject);
+  console.log(typeof urlSubject);
+  console.log(localStorage.getItem('currentSubjectID'));
+  var currentSubjectID = urlSubject ? urlSubject : localStorage.getItem('currentSubjectID');
+  console.log(currentSubjectID);
   var storedSubject = localStorage.getItem(currentSubjectID);
+  localStorage.setItem('currentSubjectID', currentSubjectID);
   subject = JSON.parse(storedSubject);
   if (subject == null){
     alert('Erro: não foi possível recuperar os dados do sujeito. Um novo formulário em branco foi criado.');
@@ -283,10 +401,27 @@ function form_page_init(event){
   formname = $("div[data-role='page']").last().data('pagename');
   console.log($("div[data-role='page']"));
   console.log('form_page_init '+formname);
+  if (typeof formname === 'undefined') { return; }
+  if (formname == 'list'){
+    list_page_init(event);
+    return;
+  }
   setTimeout(loadCurrentSubject, 1)
   $('input, textarea, select').unbind("blur change keyup");
   $('input, textarea, select').bind("blur change keyup", updateSubjectData);
 }
+function list_page_init(event){
+  console.log('list_page_init');
+  console.log(event);
+  formname = $("div[data-role='page']").last().data('pagename');
+  setTimeout(listSubjects, 1)
+}
+
+//helpers
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
+
 history.navigationMode = 'compatible';
 
 
