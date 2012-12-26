@@ -310,6 +310,7 @@ function sendData(event){
 
 }
 function home_init(){
+  console.log('home_init');
   $('#subject_new_btn').click(newSubject);
   // $('#subject_list_btn').click(listSubjects);
   if (localStorage.length == 0){
@@ -318,6 +319,8 @@ function home_init(){
   if ((localStorage.length == 0) || (!navigator.onLine)){
     $('#sync_btn').addClass('ui-disabled');
   }
+  $(window).unbind("online offline");
+  $('#sendButton').unbind("click");
   $(window).bind("online offline", offlineStateChanged);
   $('#sendButton').bind("click", sendData);
 }
@@ -401,7 +404,10 @@ function form_page_init(event){
   formname = $("div[data-role='page']").last().data('pagename');
   console.log($("div[data-role='page']"));
   console.log('form_page_init '+formname);
-  if (typeof formname === 'undefined') { return; }
+  if (typeof formname === 'undefined') {
+    home_init();
+    return;
+  }
   if (formname == 'list'){
     list_page_init(event);
     return;
