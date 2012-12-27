@@ -47,10 +47,12 @@
     </div><!-- /content -->
 <script src="./js/main.js"></script>
 <script>
+if (top === self) {
 $(function() {
   $(window).unbind('pageshow');
   $(window).bind('pageshow', form_page_init);
 });
+}
 </script>
 </body>
 </html>

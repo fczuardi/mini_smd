@@ -36,14 +36,12 @@
 </div>
 <script src="./js/main.js"></script>
 <script>
+if (top === self) {
 $(function() {
   $(window).unbind('pageshow');
   $(window).bind('pageshow', form_page_init);
-  $(window).bind('load', function(){
-    console.log('foo');
-  });
 });
-console.log('bar');
+}
 </script>
 </body>
 </html>

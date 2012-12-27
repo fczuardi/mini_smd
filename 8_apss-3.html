@@ -28,7 +28,7 @@
   <h3>Alguma vez você já…</h3>
   <fieldset data-role="controlgroup" >
     <h4>1. … ouviu vozes ou sons que ninguém mais pode ouvir?</h4>
-    <input type="radio" name="a" id="v_0" value="1" checked="checked" />
+    <input type="radio" name="a" id="v_0" value="1"/>
     <label for="v_0">Sim, definitivamente</label>
     <input type="radio" name="a" id="v_1" value="0.5"/>
     <label for="v_1">Pode ser</label>
@@ -37,7 +37,7 @@
   </fieldset>
   <fieldset data-role="controlgroup" >
     <h4>2. … viu coisas que outras pessoas não podiam ver?</h4>
-    <input type="radio" name="b" id="o_0" value="1" checked="checked" />
+    <input type="radio" name="b" id="o_0" value="1"/>
     <label for="o_0">Sim, definitivamente</label>
     <input type="radio" name="b" id="o_1" value="0.5"/>
     <label for="o_1">Pode ser</label>
@@ -46,7 +46,7 @@
   </fieldset>
   <fieldset data-role="controlgroup" >
     <h4>3. … pensou que pessoas poderiam estar seguindo ou espionando você?</h4>
-    <input type="radio" name="c" id="p_0" value="1" checked="checked" />
+    <input type="radio" name="c" id="p_0" value="1"/>
     <label for="p_0">Sim, definitivamente</label>
     <input type="radio" name="c" id="p_1" value="0.5"/>
     <label for="p_1">Pode ser</label>
@@ -58,10 +58,12 @@
 </div>
 <script src="./js/main.js"></script>
 <script>
+if (top === self) {
 $(function() {
   $(window).unbind('pageshow');
   $(window).bind('pageshow', form_page_init);
 });
+}
 </script>
 </body>
 </html>
