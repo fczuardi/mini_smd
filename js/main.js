@@ -100,84 +100,84 @@ Answers = function(){
   this.coopWonca = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
   this.phq2 = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     b: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
   this.gad2 = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     b: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
   this.idate3 = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
   this.cudit3 = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
   this.m3 = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     b: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     c: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     d: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
   this.apss3 = {
     a: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     b: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       },
     c: {
       type:'radio',
-      value:'0',
+      value:'-1',
       selectedIndex:0
       }
   }
