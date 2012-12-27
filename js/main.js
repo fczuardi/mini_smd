@@ -233,6 +233,11 @@ function newSubject(event){
   // $('#subject_list_btn').removeClass('ui-disabled');
   console.log("current subject: "+ subject.id);
 }
+function setSubjectAndGo(id){
+  localStorage.setItem('currentSubjectID', id);
+  window.location.href = "./1_identificacao.html";
+  return false;
+}
 function listSubjects(){
   // event.preventDefault();
   // event.stopPropagation();
@@ -258,7 +263,7 @@ function listSubjects(){
     subjectName = subject.about.name.value;
     console.log(subjectID);
     console.log(subject.about.name.value);
-    itemHTML = '<li><a href="./1_identificacao.html?subject='+subjectID+'">'+
+    itemHTML = '<li><a href="#" onclick="setSubjectAndGo(\''+subjectID+'\');">'+
                subjectName +
                '</a></li>';
     $('#subjectList').append(itemHTML);
@@ -373,12 +378,7 @@ function fillFormValues(){
   }
 }
 function loadCurrentSubject(){
-  var urlSubject = getURLParameter('subject');
-  console.log('AAAA')
-  console.log(urlSubject);
-  console.log(typeof urlSubject);
-  console.log(localStorage.getItem('currentSubjectID'));
-  var currentSubjectID = urlSubject ? urlSubject : localStorage.getItem('currentSubjectID');
+  var currentSubjectID = localStorage.getItem('currentSubjectID');
   console.log(currentSubjectID);
   var storedSubject = localStorage.getItem(currentSubjectID);
   localStorage.setItem('currentSubjectID', currentSubjectID);

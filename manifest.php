@@ -1,7 +1,7 @@
 <?php
 header('Content-type: text/cache-manifest');
 ?>CACHE MANIFEST
-# 2012-12-27:v2
+# 2012-12-27:v3
 
 CACHE:
 1_identificacao.html
