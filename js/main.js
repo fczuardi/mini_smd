@@ -1,6 +1,6 @@
 
-var subject
-var formname
+var subject,
+    formname;
 
 Answers = function(){
   this.id = new Date().getTime();
@@ -275,6 +275,11 @@ function offlineStateChanged(event){
     $('#sync_btn').addClass('ui-disabled');
   }
 }
+function resetSendPopupButton(){
+  $('#sendButton').removeClass('ui-disabled');
+  $('#sendButton').html('Enviar');
+  $('#sendButton').button('refresh');
+}
 function sendData(event){
   console.log('sendData');
   var url = "./sync.php";
@@ -290,9 +295,7 @@ function sendData(event){
           },
           function(data){
             // console.log(data.received);
-            $('#sendButton').removeClass('ui-disabled');
-            $('#sendButton').html('Enviar');
-            $('#sendButton').button('refresh');
+            resetSendPopupButton();
             $("#responseMsg").html(data.msg);
             $("#popupSend").bind({
                popupafterclose: function(event, ui) {
@@ -307,7 +310,6 @@ function sendData(event){
             $("#popupSend").popup( "close" );
           },
           "json");
-
 }
 function home_init(){
   console.log('home_init');
