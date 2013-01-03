@@ -2,6 +2,7 @@
 ini_set('display_errors', '1');
 $type = array_key_exists('type', $_GET)?$_GET['type']:'all';
 $fmt = array_key_exists('fmt', $_GET)?$_GET['fmt']:'html';
+$CSV_SEPARATOR = ";";
 if ($fmt == 'csv'){
   header('Content-Type: text/csv; charset=utf-8');
   header("Content-Disposition: attachment; filename=$type.csv");
@@ -95,7 +96,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     }
   }
   if(! $header_printed){
-    $output .= '"' . implode('","', array_keys($row)) . "\"\n";
+    $output .= '"' . implode("\"$CSV_SEPARATOR\"", array_keys($row)) . "\"\n";
     $header_printed = true;
   }
   if ($type == 'negativo') {
@@ -103,7 +104,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       continue;
     }
   }
-  $output .= '"' . implode('","', array_values($row)) . "\"\n";
+  $output .= '"' . implode("\"$CSV_SEPARATOR\"", array_values($row)) . "\"\n";
 }
 if ($fmt != 'html'){
   echo $output;
