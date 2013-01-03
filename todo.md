@@ -4,19 +4,19 @@
 
     Para um respondedor ser considerado positivo ele deve satisfazer pelo menos um dos seguintes critérios:
 
-    Na escala COOP-WONCA responder: 3-4-5
-    Na escala PHQ-2 responder: soma maior ou igual a 3
-    Na escala GAD-2 responder: soma maior ou igual a 3
-    Na escala AUDIT - 3 responder: 2-3-4
-    Na escala CUDIT-1 responder: 3-4
-    Na escala M-3 responder: média dos pontos 2-3-4
-    Na escala APPSS-3 responder: 1 em qualquer um dos 3 itens.
+    ok Na escala COOP-WONCA responder: 3-4-5
+    ok Na escala PHQ-2 responder: soma maior ou igual a 3
+    ok Na escala GAD-2 responder: soma maior ou igual a 3
+    ok Na escala AUDIT - 3 responder: 2-3-4
+    ok Na escala CUDIT-1 responder: 2-3
+    ok Na escala M-3 responder: média dos pontos 2-3-4
+    ok Na escala APPSS-3 responder: 1 em qualquer um dos 3 itens.
 
     Nivel socio-economnico
-    Critério: 1 (0 a 13 pontos); 2 (14 a 22 pontos); 3 (23 a 46 pontos)
+    ok Critério: 1 (0 a 13 pontos); 2 (14 a 22 pontos); 3 (23 a 46 pontos)
 
 #tarefas
-- implementar export do Excel
++ implementar export do Excel @done (2013-01-02 22:23)
 
 - testar no browser nativo do android
 - testar no chrome/android
@@ -26,6 +26,8 @@
 - colocar um ícone para quando salvar na homescreen
 - implementar instalação via Mozilla App Store
 - implementar tela de admin
+- mudar filename para cudit-1
+- mudar nome de idate para audit
 
 # bugs
 - carregamento dos iframes está rodando o load do javascript
