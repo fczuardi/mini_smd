@@ -47,7 +47,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $result_gad = (int)$row["gad2_a"] + (int)$row["gad2_b"];
   $result_audit = (int)$row["idate3_a"];
   $result_cudit = (int)$row["cudit3_a"];
-  $result_m = ((int)$row["m3_a"] + (int)$row["m3_b"] + (int)$row["m3_c"] + (int)$row["m3_d"])/4;
+  $result_m = (int)$row["m3_a"] + (int)$row["m3_b"] + (int)$row["m3_c"] + (int)$row["m3_d"];
   $result_apss = '';
   $result_apss .= (int)$row["apss3_a"] == 1 ? 'a' : '';
   $result_apss .= (int)$row["apss3_b"] == 1 ? 'b' : '';
