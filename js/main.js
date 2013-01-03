@@ -233,12 +233,40 @@ function newSubject(event){
   // $('#subject_list_btn').removeClass('ui-disabled');
   console.log("current subject: "+ subject.id);
 }
-function setSubjectAndGo(id){
+function deleteSubject(id,link){
+  var subjectList = localStorage.getItem('subjectList');
+  subjectList = JSON.parse(subjectList);
+  id = Number(id);
+  subjectList.splice(subjectList.indexOf(id), 1);
+  localStorage.removeItem(id);
+  localStorage.setItem('subjectList', JSON.stringify(subjectList));
+  $(link).parents('li').remove();
+  $('#subjectList').listview('refresh');
+}
+function setSubjectAndGo(id,link){
+  if ($(link).parents('li').attr('data-icon') == 'delete'){
+    deleteSubject(id,link);
+    return false
+  }
   localStorage.setItem('currentSubjectID', id);
   window.location.href = "./1_identificacao.html";
   return false;
 }
-function listSubjects(){
+function toggleDeleteSubjectMode(){
+  console.log('toggleDeleteSubjectMode');
+  if(!$('#subjectList').hasClass('deletemode')){
+    $('#subjectList').addClass('deletemode');
+    $('#subjectList').html('');
+    listSubjects('delete');
+  }else{
+    $('#subjectList').removeClass('deletemode');
+    $('#subjectList').html('');
+    listSubjects();
+  }
+  return false;
+}
+function listSubjects(mode){
+  console.log('listSubjects '+mode);
   // event.preventDefault();
   // event.stopPropagation();
   var subjectList = JSON.parse(localStorage.getItem('subjectList')),
@@ -246,6 +274,7 @@ function listSubjects(){
       subjectName,
       subject,
       itemHTML,
+      removeButtonHTML,
       newSubjectList = [];
   console.log(subjectList);
   console.log('---------------');
@@ -263,11 +292,16 @@ function listSubjects(){
     subjectName = subject.about.name.value;
     console.log(subjectID);
     console.log(subject.about.name.value);
-    itemHTML = '<li><a href="#" onclick="setSubjectAndGo(\''+subjectID+'\');">'+
+    itemHTML = '<li '+ ((mode=='delete')?'data-icon="delete"':'')+
+                '><a href="#" onclick="setSubjectAndGo(\''+subjectID+'\',this);">'+
                subjectName +
                '</a></li>';
     $('#subjectList').append(itemHTML);
   }
+  removeButtonHTML =  '<li data-icon="false" data-theme="b" >'+
+                      '<a id="deleteModeBtn" href="#" onclick="toggleDeleteSubjectMode()" data-role="button">'+
+                      ((mode=='delete')?'Sair do modo de remoção':'Remover Sujeito')+'</a></li>'
+  $('#subjectList').append(removeButtonHTML);
   localStorage.setItem('subjectList', JSON.stringify(newSubjectList));
   $('#subjectList').listview('refresh');
 }
