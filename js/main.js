@@ -216,15 +216,19 @@ function clearStorage(){
     localStorage.removeItem(i);
   }
 }
-function newSubject(event){
-  // event.preventDefault();
-  // event.stopPropagation();
+function getLocalSubjectList(){
   var subjectList = localStorage.getItem('subjectList');
   if (subjectList == null){
     subjectList = [];
   } else {
     subjectList = JSON.parse(subjectList);
   }
+  return subjectList;
+}
+function newSubject(event){
+  // event.preventDefault();
+  // event.stopPropagation();
+  var subjectList = getLocalSubjectList();
   subject = new Answers();
   localStorage.setItem('currentSubjectID', subject.id);
   localStorage.setItem(subject.id, JSON.stringify(subject));
@@ -234,8 +238,7 @@ function newSubject(event){
   console.log("current subject: "+ subject.id);
 }
 function deleteSubject(id,link){
-  var subjectList = localStorage.getItem('subjectList');
-  subjectList = JSON.parse(subjectList);
+  var subjectList = getLocalSubjectList();
   id = Number(id);
   subjectList.splice(subjectList.indexOf(id), 1);
   localStorage.removeItem(id);
@@ -352,11 +355,13 @@ function sendData(event){
 }
 function home_init(){
   console.log('home_init');
+  var subjectList = getLocalSubjectList();
   $('#subject_new_btn').click(newSubject);
   // $('#subject_list_btn').click(listSubjects);
-  if (localStorage.length == 0){
+  if ( (localStorage.length == 0) || (subjectList.length == 0) ){
     $('#subject_list_btn').addClass('ui-disabled');
   }
+  console.log();
   if ((localStorage.length == 0) || (!navigator.onLine)){
     $('#sync_btn').addClass('ui-disabled');
   }
