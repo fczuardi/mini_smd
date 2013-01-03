@@ -23,8 +23,8 @@ $hidden_columns = array(
                     'coopWonca_a',
                     'phq2_a', 'phq2_b',
                     'gad2_a', 'gad2_b',
-                    'idate3_a',
-                    "cudit3_a",
+                    'audit3_a',
+                    "cudit1_a",
                     "m3_a", "m3_b", "m3_c", "m3_d",
                     "apss3_a", "apss3_b", "apss3_c",
                     "general_result",
@@ -46,8 +46,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $result_coop = (int)$row["coopWonca_a"];
   $result_phq = (int)$row["phq2_a"] + (int)$row["phq2_b"];
   $result_gad = (int)$row["gad2_a"] + (int)$row["gad2_b"];
-  $result_audit = (int)$row["idate3_a"];
-  $result_cudit = (int)$row["cudit3_a"];
+  $result_audit = (int)$row["audit3_a"];
+  $result_cudit = (int)$row["cudit1_a"];
   $result_m = (int)$row["m3_a"] + (int)$row["m3_b"] + (int)$row["m3_c"] + (int)$row["m3_d"];
   $result_apss = '';
   $result_apss .= (int)$row["apss3_a"] == 1 ? 'a' : '';

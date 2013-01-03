@@ -2,6 +2,7 @@
 header('Content-type: text/cache-manifest');
 ?>CACHE MANIFEST
 
+# 2013-01-03:v8
 # 2013-01-03:v7
 # 2013-01-03:v6
 # 2013-01-03:v5
