@@ -1,6 +1,8 @@
 <?php
 header('Content-type: text/cache-manifest');
 ?>CACHE MANIFEST
+
+# 2013-01-03:v4
 # 2012-12-27:v3
 
 CACHE:
