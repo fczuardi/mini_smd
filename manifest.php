@@ -2,6 +2,7 @@
 header('Content-type: text/cache-manifest');
 ?>CACHE MANIFEST
 
+# 2013-01-03:v5
 # 2013-01-03:v4
 # 2012-12-27:v3
 
@@ -10,8 +11,8 @@ CACHE:
 2_coop-wonca.html
 3_phq-2.html
 4_gad-2.html
-5_idate-3.html
-6_cudit-3.html
+5_audit-3.html
+6_cudit-1.html
 7_m-3.html
 8_apss-3.html
 app.html

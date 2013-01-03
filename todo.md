@@ -1,5 +1,8 @@
 #tarefas
-- mudar filename para cudit-1
++ mudar filename para cudit-1 @done (2013-01-03 15:23)
+- mudar filename de idate para audit3
+
+- opção para deletar um sujeito existente
 + mudar nome de idate para audit @done (2013-01-03 15:05)
 + implementar export do Excel @done (2013-01-02 22:23)
 

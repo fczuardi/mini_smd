@@ -128,14 +128,14 @@ Answers = function(){
       selectedIndex:0
       }
   }
-  this.idate3 = {
+  this.audit3 = {
     a: {
       type:'radio',
       value:'-1',
       selectedIndex:0
       }
   }
-  this.cudit3 = {
+  this.cudit1 = {
     a: {
       type:'radio',
       value:'-1',
