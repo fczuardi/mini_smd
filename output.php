@@ -103,6 +103,10 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     if ($positive){
       continue;
     }
+  } else if ($type == 'positivo') {
+    if (! $positive){
+      continue;
+    }
   }
   $output .= '"' . implode("\"$CSV_SEPARATOR\"", array_values($row)) . "\"\n";
 }
