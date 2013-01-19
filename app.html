@@ -22,7 +22,10 @@
 <div data-role="page">
     <div data-role="content">
 
-  <img src="./img/capaMiniSMD.png" />
+  <div id="logo-container">
+    <img src="./img/capaMiniSMD.png" />
+    <p id="version">v…</p>
+  </div>
   <a id="subject_new_btn" data-role="button" data-theme="c" data-transition="fade" href="1_identificacao.html">Novo Sujeito</a>
 
 
@@ -42,16 +45,6 @@
   <input id="close-btn" type="button" value="OK" onclick="$('#popupSent').popup('close');"/>
 </div>
 
-<iframe class="hiddenframe" src="1_identificacao.html"  width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="2_coop-wonca.html"     width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="3_phq-2.html"          width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="4_gad-2.html"          width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="5_audit-3.html"        width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="6_cudit-1.html"        width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="7_m-3.html"            width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="8_apss-3.html"         width="10" height="10"></iframe>
-<iframe class="hiddenframe" src="list.html"             width="10" height="10"></iframe>
-
 </div>
 </div><!-- /page -->
 <script src="./js/main.js"></script>
@@ -60,7 +53,7 @@ $(function() {
   $(window).unbind('pageshow');
   $(window).bind('pageshow', form_page_init);
 });
-console.log(' v 1.0');
+console.log(' v 1.0.1');
 </script>
 </body>
 </html>

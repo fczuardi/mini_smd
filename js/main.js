@@ -1,6 +1,7 @@
 
 var subject,
-    formname;
+    formname
+    version = "1.0.1";
 
 Answers = function(){
   this.id = new Date().getTime();
@@ -363,6 +364,46 @@ function sendData(event){
           },
           "json");
 }
+function loadAllPages(){
+  var urls = [
+    '1_identificacao.html',
+    '2_coop-wonca.html',
+    '3_phq-2.html',
+    '4_gad-2.html',
+    '5_audit-3.html',
+    '6_cudit-1.html',
+    '7_m-3.html',
+    '8_apss-3.html',
+    'list.html'
+  ];
+  console.log('loadAllPages');
+  var url = urls.pop();
+  $.get(url, function(data) {
+    var url = urls.pop();
+    $.get(url, function(data) {
+      var url = urls.pop();
+      $.get(url, function(data) {
+        var url = urls.pop();
+        $.get(url, function(data) {
+          var url = urls.pop();
+          $.get(url, function(data) {
+            var url = urls.pop();
+            $.get(url, function(data) {
+              var url = urls.pop();
+              $.get(url, function(data) {
+                var url = urls.pop();
+                $.get(url, function(data) {
+                  console.log('last URL loaded');
+                  $('#version').html('v'+version);
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+}
 function home_init(){
   console.log('home_init');
   var subjectList = getLocalSubjectList();
@@ -379,6 +420,7 @@ function home_init(){
   $('#sendButton').unbind("click");
   $(window).bind("online offline", offlineStateChanged);
   $('#sendButton').bind("click", sendData);
+  loadAllPages();
 }
 function fillFormValues(){
   console.log('fillFormValues');
