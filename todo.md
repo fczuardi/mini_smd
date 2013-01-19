@@ -1,18 +1,18 @@
 #tarefas
 - colocar um indicativo de que um sujeito foi enviado
+
 - colocar um ícone para quando salvar na homescreen
 - implementar instalação via Mozilla App Store
+- testar no browser nativo do android
+- testar no chrome/android
+- testar no android 2.3
+- implementar tela de admin
 
 + opção para deletar um sujeito existente @done (2013-01-03 16:48)
 + mudar filename para cudit-1 @done (2013-01-03 15:23)
 + mudar filename de idate para audit3 @done (2013-01-03 15:33)
 + mudar nome de idate para audit @done (2013-01-03 15:05)
 + implementar export do Excel @done (2013-01-02 22:23)
-
-- testar no browser nativo do android
-- testar no chrome/android
-- testar no android 2.3
-- implementar tela de admin
 
 
 # bugs

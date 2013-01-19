@@ -46,6 +46,16 @@ Answers = function(){
       value:'-1',
       selectedIndex:0
       },
+    estado_civil: {
+      type:'select',
+      value:'-1',
+      selectedIndex:0
+      },
+    situacao_laboral: {
+      type:'select',
+      value:'-1',
+      selectedIndex:0
+      },
     tv: {
       type:'select',
       value:'-1',

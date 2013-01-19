@@ -11,6 +11,8 @@ CREATE TABLE sujeitos(
   about_gender TEXT,
   about_birth TEXT,
   about_escolaridade INTEGER,
+  about_estado_civil INTEGER,
+  about_situacao_laboral INTEGER,
   about_tv INTEGER,
   about_radio INTEGER,
   about_bathroom INTEGER,
