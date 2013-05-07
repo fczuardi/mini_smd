@@ -1,7 +1,7 @@
 
 var subject,
     formname
-    version = "1.0.1";
+    version = "1.0.2";
 
 Answers = function(){
   this.id = new Date().getTime();
