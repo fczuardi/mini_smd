@@ -59,7 +59,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $positive_gad = $result_gad >= 3;
   $positive_audit = $result_audit >= 2;
   $positive_cudit = $result_cudit >= 2;
-  $positive_m = $result_m >= 2;
+  $positive_m = $result_m >= 3;
   $positive_apss = strlen($result_apss) > 0;
   $positive = ($positive_coop || $positive_phq || $positive_gad ||
               $positive_audit || $positive_cudit || $positive_m ||
