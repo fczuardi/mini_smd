@@ -59,7 +59,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $positive_gad = $result_gad >= 3;
   $positive_audit = $result_audit >= 2;
   $positive_cudit = $result_cudit >= 2;
-  $positive_m = $result_m >= 3;
+  $old_positive_m = $result_m >= 3;
+  $positive_m = false;
   $positive_apss = strlen($result_apss) > 0;
   $positive = ($positive_coop || $positive_phq || $positive_gad ||
               $positive_audit || $positive_cudit || $positive_m ||
@@ -79,7 +80,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $row['cudit_result'] = $result_cudit;
   $row['cudit_status'] = $positive_cudit ? 'positivo' : 'negativo';
   $row['m_result'] = $result_m;
-  $row['m_status'] = $positive_m ? 'positivo' : 'negativo';
+  $row['m_status'] = $old_positive_m ? 'cancelado-positivo' : 'cancelado-negativo';
   $row['apss_result'] = $result_apss;
   $row['apss_status'] = $positive_apss ? 'positivo' : 'negativo';
   $row['general_result'] = $positive ? 'positivo' : 'negativo';
