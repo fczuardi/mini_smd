@@ -2,6 +2,7 @@
 header('Content-type: text/cache-manifest');
 ?>CACHE MANIFEST
 
+# 2013-08-02-11:15:v1.0.3
 # 2013-05-07-12:15:v1.0.2
 # 2013-01-19-6:57
 # 2013-01-19:v9
@@ -36,6 +37,7 @@ js/jquery-1.8.2.min.js
 js/jquery.mobile-1.2.0.min.js
 js/load_polyfills.js
 js/main.js
+js/main.js?v=1.0.3
 js/polyfills/jquery.json-2.4.min.js
 js/polyfills/jstorage.js
 mobpick/external/jquery-1.6.4.min.js

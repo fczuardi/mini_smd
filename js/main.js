@@ -1,7 +1,14 @@
 
+var SUBJECTS_PER_BATCH = 5,
+    version = "1.0.3";
+
 var subject,
-    formname
-    version = "1.0.2";
+    formname,
+    sentIndex,
+    urls,
+    url,
+    allDataToSend,
+    batchesSent;
 
 Answers = function(){
   this.id = new Date().getTime();
@@ -107,14 +114,14 @@ Answers = function(){
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.coopWonca = {
     a: {
       type:'radio',
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.phq2 = {
     a: {
       type:'radio',
@@ -126,7 +133,7 @@ Answers = function(){
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.gad2 = {
     a: {
       type:'radio',
@@ -138,21 +145,21 @@ Answers = function(){
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.audit3 = {
     a: {
       type:'radio',
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.cudit1 = {
     a: {
       type:'radio',
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.m3 = {
     a: {
       type:'radio',
@@ -174,7 +181,7 @@ Answers = function(){
       value:'-1',
       selectedIndex:0
       }
-  }
+  };
   this.apss3 = {
     a: {
       type:'radio',
@@ -191,17 +198,17 @@ Answers = function(){
       value:'-1',
       selectedIndex:0
       }
-  }
-}
+  };
+};
 function dataToSend(){
   var subjectList = JSON.parse(localStorage.getItem('subjectList')),
       subject,
       summarizedSubject,
       toSend = [];
-  for(var i=0; i< subjectList.length; i++){
+  for (var i = subjectList.length - 1; i >= 0; i--) {
     subject = JSON.parse(localStorage.getItem(subjectList[i]));
     if (!subject){continue;}
-    if(!subject.about.name.value){ continue;}
+    if (!subject.about.name.value){ continue;}
     summarizedSubject = {
       id: subject.id
     };
@@ -216,8 +223,6 @@ function dataToSend(){
     }
     toSend.push(summarizedSubject);
   }
-  // console.log(JSON.stringify(toSend));
-  // return JSON.stringify(toSend);
   return toSend;
 }
 
@@ -229,7 +234,7 @@ function clearStorage(){
 }
 function getLocalSubjectList(){
   var subjectList = localStorage.getItem('subjectList');
-  if (subjectList == null){
+  if (subjectList === null){
     subjectList = [];
   } else {
     subjectList = JSON.parse(subjectList);
@@ -237,15 +242,13 @@ function getLocalSubjectList(){
   return subjectList;
 }
 function newSubject(event){
-  // event.preventDefault();
-  // event.stopPropagation();
   var subjectList = getLocalSubjectList();
   subject = new Answers();
   localStorage.setItem('currentSubjectID', subject.id);
   localStorage.setItem(subject.id, JSON.stringify(subject));
+  console.log('subjectList.push('+subject.id+')');
   subjectList.push(subject.id);
   localStorage.setItem('subjectList', JSON.stringify(subjectList));
-  // $('#subject_list_btn').removeClass('ui-disabled');
   console.log("current subject: "+ subject.id);
 }
 function deleteSubject(id,link){
@@ -260,7 +263,7 @@ function deleteSubject(id,link){
 function setSubjectAndGo(id,link){
   if ($(link).parents('li').attr('data-icon') == 'delete'){
     deleteSubject(id,link);
-    return false
+    return false;
   }
   localStorage.setItem('currentSubjectID', id);
   window.location.href = "./1_identificacao.html";
@@ -302,26 +305,29 @@ function listSubjects(mode){
       localStorage.removeItem(subjectID);
       continue;
     }
-    newSubjectList.push(subjectID);
-    subjectName = subject.about.name.value;
-    console.log(subjectID);
-    console.log(subject.about.name.value);
-    itemHTML = '<li '+ ((mode=='delete')?'data-icon="delete"':'')+
-                '><a href="#" onclick="setSubjectAndGo(\''+subjectID+'\',this);">'+
-               subjectName +
-               '</a></li>';
-    $('#subjectList').append(itemHTML);
+    //remove sujeitos duplicados
+    if ((i === 0) || (subjectID != subjectList[i-1])) {
+      newSubjectList.push(subjectID);
+      subjectName = subject.about.name.value;
+      console.log(subjectID);
+      console.log(subject.about.name.value);
+      itemHTML = '<li '+ ((mode=='delete')?'data-icon="delete"':'')+
+                  '><a href="#" onclick="setSubjectAndGo(\''+subjectID+'\',this);">'+
+                 subjectName +
+                 '</a></li>';
+      $('#subjectList').append(itemHTML);
+    }
   }
   removeButtonHTML =  '<li data-icon="false" data-theme="b" >'+
                       '<a id="deleteModeBtn" href="#" onclick="toggleDeleteSubjectMode()" data-role="button">'+
-                      ((mode=='delete')?'Sair do modo de remoção':'Remover Sujeito')+'</a></li>'
+                      ((mode=='delete')?'Sair do modo de remoção':'Remover Sujeito')+'</a></li>';
   $('#subjectList').append(removeButtonHTML);
   localStorage.setItem('subjectList', JSON.stringify(newSubjectList));
   $('#subjectList').listview('refresh');
 }
 function offlineStateChanged(event){
   console.log('offlineStateChanged');
-  console.log(navigator.onLine)
+  console.log(navigator.onLine);
   if (navigator.onLine){
     $('#sync_btn').removeClass('ui-disabled');
   } else{
@@ -333,39 +339,60 @@ function resetSendPopupButton(){
   $('#sendButton').html('Enviar');
   $('#sendButton').button('refresh');
 }
+function sendNextBatch(data){
+  var url = "./sync.php",
+      batchToSend = allDataToSend.slice(sentIndex, sentIndex + SUBJECTS_PER_BATCH);
+  // console.log(allDataToSend);
+  // console.log(sentIndex);
+  // console.log(sentIndex + SUBJECTS_PER_BATCH);
+  // console.log(batchToSend.length);
+  // console.log(batchToSend);
+  if (batchToSend.length > 0 ){
+    $.post( url,
+            {
+              sent_by: $("#interviewerName").attr('value'),
+              data: batchToSend
+            },
+            function(data){
+              sendNextBatch(data);
+            }, "json"
+          );
+    batchesSent ++;
+    sentIndex = sentIndex + SUBJECTS_PER_BATCH;
+    console.log('Sending batch '+batchesSent+'/'+(Math.ceil(allDataToSend.length/SUBJECTS_PER_BATCH)));
+    $('#sendButton').html('Enviando ('+ (Math.min(batchesSent*SUBJECTS_PER_BATCH, allDataToSend.length)) +'/'+ allDataToSend.length +")…");
+    $('#sendButton').button('refresh');
+  }else{
+    console.log('Último batch enviado.');
+    // console.log(data.received);
+    resetSendPopupButton();
+    $("#responseMsg").html(data.msg);
+    $("#popupSend").bind({
+       popupafterclose: function(event, ui) {
+        setTimeout(function(){
+          $("#popupSent").popup( "open" );
+          if (data.success == 1){
+            //remove local data here
+          }
+        },300);
+       }
+    });
+    $("#popupSend").popup( "close" );
+  }
+}
 function sendData(event){
   console.log('sendData');
-  var url = "./sync.php";
+  batchesSent = 0;
+  sentIndex = 0;
   event.preventDefault();
   event.stopPropagation();
   $('#sendButton').addClass('ui-disabled');
-  $('#sendButton').html('Enviando…');
-  $('#sendButton').button('refresh');
-  $.post( url,
-          {
-            sent_by: $("#interviewerName").attr('value'),
-            data: dataToSend()
-          },
-          function(data){
-            // console.log(data.received);
-            resetSendPopupButton();
-            $("#responseMsg").html(data.msg);
-            $("#popupSend").bind({
-               popupafterclose: function(event, ui) {
-                setTimeout(function(){
-                  $("#popupSent").popup( "open" );
-                  if (data.success == 1){
-                    //remove local data here
-                  }
-                },300);
-               }
-            });
-            $("#popupSend").popup( "close" );
-          },
-          "json");
+  allDataToSend = dataToSend();
+  sendNextBatch({});
 }
 function loadAllPages(){
-  var urls = [
+  console.log('loadAllPages');
+  urls = [
     '1_identificacao.html',
     '2_coop-wonca.html',
     '3_phq-2.html',
@@ -377,22 +404,30 @@ function loadAllPages(){
     'list.html'
   ];
   console.log('loadAllPages');
-  var url = urls.pop();
+  url = urls.pop();
   $.get(url, function(data) {
-    var url = urls.pop();
+    console.log(url+"loaded");
+    url = urls.pop();
     $.get(url, function(data) {
-      var url = urls.pop();
+      console.log(url+"loaded");
+      url = urls.pop();
       $.get(url, function(data) {
-        var url = urls.pop();
+        console.log(url+"loaded");
+        url = urls.pop();
         $.get(url, function(data) {
-          var url = urls.pop();
+          console.log(url+"loaded");
+          url = urls.pop();
           $.get(url, function(data) {
-            var url = urls.pop();
+            console.log(url+"loaded");
+            url = urls.pop();
             $.get(url, function(data) {
-              var url = urls.pop();
+              console.log(url+"loaded");
+              url = urls.pop();
               $.get(url, function(data) {
-                var url = urls.pop();
+                console.log(url+"loaded");
+                url = urls.pop();
                 $.get(url, function(data) {
+                  console.log(url+"loaded");
                   console.log('last URL loaded');
                   $('#version').html('v'+version);
                 });
@@ -409,11 +444,10 @@ function home_init(){
   var subjectList = getLocalSubjectList();
   $('#subject_new_btn').click(newSubject);
   // $('#subject_list_btn').click(listSubjects);
-  if ( (localStorage.length == 0) || (subjectList.length == 0) ){
+  if ( (localStorage.length === 0) || (subjectList.length === 0) ){
     $('#subject_list_btn').addClass('ui-disabled');
   }
-  console.log();
-  if ((localStorage.length == 0) || (!navigator.onLine)){
+  if ((localStorage.length === 0) || (!navigator.onLine)){
     $('#sync_btn').addClass('ui-disabled');
   }
   $(window).unbind("online offline");
@@ -505,7 +539,7 @@ function form_page_init(event){
     list_page_init(event);
     return;
   }
-  setTimeout(loadCurrentSubject, 1)
+  setTimeout(loadCurrentSubject, 1);
   $('input, textarea, select').unbind("blur change keyup");
   $('input, textarea, select').bind("blur change keyup", updateSubjectData);
 }
@@ -513,12 +547,12 @@ function list_page_init(event){
   console.log('list_page_init');
   console.log(event);
   formname = $("div[data-role='page']").last().data('pagename');
-  setTimeout(listSubjects, 1)
+  setTimeout(listSubjects, 1);
 }
 
 //helpers
 function getURLParameter(name) {
-    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||['',""])[1].replace(/\+/g, '%20'))||null;
 }
 
 history.navigationMode = 'compatible';
