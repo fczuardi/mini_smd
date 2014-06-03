@@ -69,9 +69,21 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $old_positive_m = $result_m >= 3;
   $positive_m = false;
   $positive_apss = strlen($result_apss) > 0;
-  $positive = ($positive_coop || $positive_phq || $positive_gad ||
-              $positive_audit || $positive_cudit || $positive_m ||
-              $positive_apss);
+
+  //somar colunas
+  // phq-result + gad-result + audit-result + cudit-result + apps3-a +apps3-b + apps3-c
+  // mini-score é esta soma acima
+  // mini-status 0(negativo) ou 1 (positivo)
+  // <= 3 é negativo >=4 é positivo
+  $mini_score = ( $result_phq +
+                  $result_gad +
+                  $result_audit +
+                  $result_cudit +
+                  (int)$row["apss3_a"] +
+                  (int)$row["apss3_b"] +
+                  (int)$row["apss3_c"]
+                );
+  $positive = ($mini_score >= 4);
 
   $row['cceb_result'] = $result_cceb;
   $row['cceb_status'] =  ($result_cceb >= 0 && $result_cceb <= 13) ? '1' :
@@ -92,7 +104,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $row['apss_status'] = $positive_apss ? 'positivo' : 'negativo';
   $row['idade_em_2014'] = "==2014-YEAR($birthday_row$row_count)";
   // $row['idade_hoje'] = "==YEAR(TODAY())-YEAR($birthday_row$row_count)";
-  $row['general_result'] = $positive ? 'positivo' : 'negativo';
+  $row['mini_score'] = $mini_score;
+  $row['mini_status'] = $positive ? 1 : 0;
 
   if ($type != 'all') {
     foreach ($hidden_columns as $column_name){

@@ -15,7 +15,7 @@
 - [x] Remover colunas do m3 da planilha
 - [x] Remover colunas coop/wonca da planilha
   - ```m3_a, b, c, d + m_result, m_status```
-- [ ] Novo criterio de positivo/negativo
+- [x] Novo criterio de positivo/negativo
   - ver source file
 
 ## App v2
