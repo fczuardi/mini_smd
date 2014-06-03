@@ -2,6 +2,7 @@
 ini_set('display_errors', '1');
 $type = array_key_exists('type', $_GET)?$_GET['type']:'all';
 $fmt = array_key_exists('fmt', $_GET)?$_GET['fmt']:'html';
+$version = array_key_exists('version', $_GET) ? $_GET['version'] : '1.2.0';
 $CSV_SEPARATOR = ";";
 if ($fmt == 'csv'){
   header('Content-Type: text/csv; charset=utf-8');
@@ -37,6 +38,72 @@ $v1_2_0_hidden = array(
                     "m3_a", "m3_b", "m3_c", "m3_d","m_result","m_status",
                     "coopWonca_a", "coop_result", "coop_status"
                     );
+//subject ids that might have incorrect birth dates
+$suspect_ids = array(
+  '1367440932831',
+  '1367444372693',
+  '1367444948554',
+  '1368732353658',
+  '1368829430023',
+  '1368829625531',
+  '1369079031416',
+  '1369079443354',
+  '1369184665053',
+  '1369514246021',
+  '1369515240974',
+  '1369516857525',
+  '1369517889207',
+  '1369580867145',
+  '1369581194731',
+  '1369583224255',
+  '1369584200983',
+  '1369584555700',
+  '1369585531721',
+  '1369586823662',
+  '1369588769574',
+  '1372014645642',
+  '1372015579238',
+  '1372018632202',
+  '1372019702467',
+  '1372021915664',
+  '1372450076097',
+  '1372873796902',
+  '1372879185517',
+  '1372881810219',
+  '1374612909572',
+  '1377542681332',
+  '1369837250649',
+  '1371297642510',
+  '1372009971972',
+  '1372610336445',
+  '1377026327296',
+  '1378213461886',
+  '1367524648141',
+  '1369245110861',
+  '1369576365847',
+  '1369781296785',
+  '1370099753798',
+  '1370104468867',
+  '1371485422396',
+  '1371670715447',
+  '1374681980984',
+  '1378049656100',
+  '1380399800727',
+  '1382976036360',
+  '1382976068943',
+  '1386517192219',
+  '1386518975329',
+  '1386580905761',
+  '1388504190487',
+  '1388525752670',
+  '1371399406968',
+  '1378563567410',
+  '1371298477080',
+  '1378226648494',
+  '1372707196462',
+  '1370710998443',
+  '1383506380347'
+);
 $row_count = 2;
 $birthday_row = 'K';
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -84,6 +151,9 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                   (int)$row["apss3_c"]
                 );
   $positive = ($mini_score >= 4);
+  $old_positive = ($positive_coop || $positive_phq || $positive_gad ||
+                  $positive_audit || $positive_cudit || $positive_m ||
+                  $positive_apss);
 
   $row['cceb_result'] = $result_cceb;
   $row['cceb_status'] =  ($result_cceb >= 0 && $result_cceb <= 13) ? '1' :
@@ -103,7 +173,11 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $row['apss_result'] = $result_apss;
   $row['apss_status'] = $positive_apss ? 'positivo' : 'negativo';
   $row['idade_em_2014'] = "==2014-YEAR($birthday_row$row_count)";
+  $row['needs_birthdate_check'] = in_array($row["id"], $suspect_ids) ? 1 : 0;
   // $row['idade_hoje'] = "==YEAR(TODAY())-YEAR($birthday_row$row_count)";
+  if ($version == '1.0.3'){
+    $row['general_result'] = $old_positive ? 'positivo' : 'negativo';
+  }
   $row['mini_score'] = $mini_score;
   $row['mini_status'] = $positive ? 1 : 0;
 
@@ -117,7 +191,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         unset($row[$column_name]);
       }
     }
-  }else{
+  }else if($version !== '1.0.3'){
     foreach ($v1_2_0_hidden as $column_name) {
       unset($row[$column_name]);
     }
@@ -155,6 +229,10 @@ if ($fmt != 'html'){
   <li><a href="?type=positivo&fmt=csv">Resultados positivos</a>(versão resumida)</li>
   <li><a href="?type=negativo&fmt=csv">Resultados negativos</a>(versão resumida)</li>
   <li><a href="?type=all&fmt=csv">Todos os resultados</a>(versão completa)</li>
+</ul>
+<h2>Planilha versão antiga (1.0.3)</h2>
+<ul>
+  <li><a href="?type=all&fmt=csv&version=1.0.3">Todos os resultados</a></li>
 </ul>
 </body>
 <?php
