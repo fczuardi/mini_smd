@@ -86,7 +86,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $row['apss_result'] = $result_apss;
   $row['apss_status'] = $positive_apss ? 'positivo' : 'negativo';
   $row['idade_em_2014'] = "==2014-YEAR($birthday_row$row_count)";
-  $row['idade_hoje'] = "==YEAR(TODAY())-YEAR($birthday_row$row_count)";
+  // $row['idade_hoje'] = "==YEAR(TODAY())-YEAR($birthday_row$row_count)";
   $row['general_result'] = $positive ? 'positivo' : 'negativo';
 
   if ($type != 'all') {
