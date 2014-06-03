@@ -32,6 +32,8 @@ $hidden_columns = array(
                     "about_maid", "about_washingMachine", "about_dvdPlayer",
                     "about_fridge", "about_freezer", "about_instrucao_chefe"
                     );
+$row_count = 2;
+$birthday_row = 'K';
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $result_cceb =  (int)$row["about_tv"] +
                   (int)$row["about_radio"] +
@@ -83,6 +85,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $row['m_status'] = $old_positive_m ? 'cancelado-positivo' : 'cancelado-negativo';
   $row['apss_result'] = $result_apss;
   $row['apss_status'] = $positive_apss ? 'positivo' : 'negativo';
+  $row['idade_em_2014'] = "==2014-YEAR($birthday_row$row_count)";
+  $row['idade_hoje'] = "==YEAR(TODAY())-YEAR($birthday_row$row_count)";
   $row['general_result'] = $positive ? 'positivo' : 'negativo';
 
   if ($type != 'all') {
@@ -110,6 +114,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     }
   }
   $output .= '"' . implode("\"$CSV_SEPARATOR\"", array_values($row)) . "\"\n";
+  $row_count += 1;
 }
 if ($fmt != 'html'){
   echo $output;
