@@ -172,7 +172,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
   $row['m_status'] = $old_positive_m ? 'cancelado-positivo' : 'cancelado-negativo';
   $row['apss_result'] = $result_apss;
   $row['apss_status'] = $positive_apss ? 'positivo' : 'negativo';
-  $row['idade_em_2014'] = "==2014-YEAR($birthday_row$row_count)";
+  $row['idade_em_2014'] = "\"=2014-YEAR($birthday_row$row_count)\";
   $row['needs_birthdate_check'] = in_array($row["id"], $suspect_ids) ? 1 : 0;
   // $row['idade_hoje'] = "==YEAR(TODAY())-YEAR($birthday_row$row_count)";
   if ($version == '1.0.3'){
