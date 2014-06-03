@@ -2,6 +2,7 @@
 
 ## Planilha
 
+- [ ] Listar os IDs com datas mal formatadas e criar uma coluna contendo flag de que necessita verificação
 - [ ] Gerar planilha nova
 - [x] Incluir coluna no spreadsheet com a idade dos participantes (mais velhos que 31 de desembro de 2013)
   - ```=YEAR(TODAY())-YEAR(K2)```
