@@ -1,4 +1,40 @@
 #tarefas
+
+## Planilha
+
+- [ ] Gerar planilha nova
+- [x] Incluir coluna no spreadsheet com a idade dos participantes (mais velhos que 31 de desembro de 2013)
+  - ```=YEAR(TODAY())-YEAR(K2)```
+- [x] Incluir coluna com o resultado do criterio brasil
+  - ```soma about_tv + about_radio + ... _instrucao_chefe``` - colunas O a X
+  - esta soma divide em classes
+    - A1,     A2,     B1,     B2,    C1,    C2,     D,      E (criterio brasil)
+    - 42-46   35-41   29-34   23-28  18-22  14-17   8-13    0-7
+    - A1+A2 = 1, B1+B2 = 2, C1+C2 = 3, D+E = 4
+      - [x] Colunas novas = soma dos pontos, classe(1,2,3)
+- [ ] Remover colunas do m3 da planilha
+- [ ] Remover colunas coop/wonca da planilha
+  - ```m3_a, b, c, d + m_result, m_status```
+- [ ] Novo criterio de positivo/negativo
+  - ver source file
+
+## App v2
+
+- sai coop/wonca
+- sai m3
+- novo input de data para termos menos erros de formatação
+
+
+
+
+
+
+
+
+
+
+
+-----
 - colocar um indicativo de que um sujeito foi enviado
 
 - colocar um ícone para quando salvar na homescreen
