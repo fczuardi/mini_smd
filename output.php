@@ -32,6 +32,11 @@ $hidden_columns = array(
                     "about_maid", "about_washingMachine", "about_dvdPlayer",
                     "about_fridge", "about_freezer", "about_instrucao_chefe"
                     );
+//m3 and coopWonca are no longer used since v1.2.0 so we hide their columns from the output
+$v1_2_0_hidden = array(
+                    "m3_a", "m3_b", "m3_c", "m3_d","m_result","m_status",
+                    "coopWonca_a", "coop_result", "coop_status"
+                    );
 $row_count = 2;
 $birthday_row = 'K';
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -98,6 +103,10 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                       'audit_status', 'cudit_status', 'm_status', 'apss_status') as $column_name){
         unset($row[$column_name]);
       }
+    }
+  }else{
+    foreach ($v1_2_0_hidden as $column_name) {
+      unset($row[$column_name]);
     }
   }
   if(! $header_printed){

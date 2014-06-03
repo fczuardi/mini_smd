@@ -12,8 +12,8 @@
     - 42-46   35-41   29-34   23-28  18-22  14-17   8-13    0-7
     - A1+A2 = 1, B1+B2 = 2, C1+C2 = 3, D+E = 4
       - [x] Colunas novas = soma dos pontos, classe(1,2,3)
-- [ ] Remover colunas do m3 da planilha
-- [ ] Remover colunas coop/wonca da planilha
+- [x] Remover colunas do m3 da planilha
+- [x] Remover colunas coop/wonca da planilha
   - ```m3_a, b, c, d + m_result, m_status```
 - [ ] Novo criterio de positivo/negativo
   - ver source file
